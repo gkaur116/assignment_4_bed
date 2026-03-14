@@ -1,5 +1,12 @@
 import express, { Router } from "express";
-import { getLoans , getLoanById , createLoan , updateLoan , deleteLoan } from "../controllers/loanController";
+import { 
+    getLoans , 
+    getLoanById , 
+    createLoan , 
+    updateLoan , 
+    deleteLoan,
+} from "../controllers/loanController";
+
 import authenticate from "../middleware/authenticate";
 import isAuthorized from "../middleware/authorize";
 

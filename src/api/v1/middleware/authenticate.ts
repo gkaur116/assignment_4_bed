@@ -2,7 +2,6 @@
 import { Request, Response, NextFunction } from "express";
 import { DecodedIdToken } from "firebase-admin/auth";
 import { AuthenticationError } from "../errors/errors";
-import { getErrorMessage, getErrorCode } from "../utils/errorUtils";
 
 // Internal module imports
 import { auth } from "../../../config/firebaseConfig";
@@ -50,13 +49,6 @@ const authenticate = async (
         if (error instanceof AuthenticationError) {
             // Re-throw authentication errors to be handled by error middleware
             next(error);
-        } else if (error instanceof Error) {
-            next(
-                new AuthenticationError(
-                    `Unauthorized: ${getErrorMessage(error)}`,
-                    getErrorCode(error)
-                )
-            );
         } else {
             next(
                 new AuthenticationError(
